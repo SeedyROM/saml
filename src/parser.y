@@ -4,6 +4,7 @@
 %parse-param {void *scanner} // Same here
 
 %{
+  // Include the generated parser/scanner code
   #include "parser.tab.h"  
   #include "lex.yy.h"
 
