@@ -1,15 +1,17 @@
-%define parse.error verbose
-%define api.pure full
-%lex-param {void *scanner}
-%parse-param {void *scanner}
+%define parse.error verbose // Return fully verbose parsing errors
+%define api.pure full // Use a fully pure reentrant parser (AKA NO GLOBAL STATE)
+%lex-param {void *scanner} // Stub out our parser state struct as void* for now
+%parse-param {void *scanner} // Same here
 
 %{
   #include "parser.tab.h"  
   #include "lex.yy.h"
 
+  // Forward declare the yyerror method to handle errors
   extern void yyerror(yyscan_t scanner, char const *message);
 %}
 
+// This union describes a tokens result value state
 %union {
   double d_val;
   int i_val;
@@ -17,10 +19,12 @@
   char* s_val;
 }
 
+// Typical tokens
 %token T_EOL
 %token T_COLON T_DASH
 %token <s_val> T_IDENT 
 
+// Entrypoint
 %start markup
 
 %%

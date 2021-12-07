@@ -72,9 +72,10 @@
   #include "parser.tab.h"  
   #include "lex.yy.h"
 
+  // Forward declare the yyerror method to handle errors
   extern void yyerror(yyscan_t scanner, char const *message);
 
-#line 78 "src/parser.tab.c"
+#line 79 "src/parser.tab.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -499,7 +500,7 @@ static const yytype_int8 yytranslate[] =
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    28,    28,    30,    31,    33,    34
+       0,    32,    32,    34,    35,    37,    38
 };
 #endif
 
@@ -1334,7 +1335,7 @@ yyreduce:
   switch (yyn)
     {
 
-#line 1338 "src/parser.tab.c"
+#line 1339 "src/parser.tab.c"
 
       default: break;
     }
@@ -1558,5 +1559,5 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 36 "src/parser.y"
+#line 40 "src/parser.y"
 
