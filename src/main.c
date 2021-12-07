@@ -19,5 +19,5 @@ int main(int argc, char* argv[]) {
 }
 
 void yyerror(yyscan_t scanner, const char* message) {
-  fprintf(stderr, "Parse error: %s\n", message);
+  log_error("Parse error: %s\n", message);
 }
