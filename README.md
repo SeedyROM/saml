@@ -1,6 +1,6 @@
 # SAML 😔
 
-## What is SAML?
+## What is SAML (*Shit... Another Markup Language*)?
 
 My attempt at parsing structured documents with flex/bison using a reentrant setup. (AKA no global state, possible to parse/translate multiple files)
 
