@@ -25,8 +25,12 @@
 
 %%
 
-markup : T_IDENT
-  | T_IDENT T_EOL
-  | markup T_EOL
+markup : nodes
+
+nodes : node
+  | nodes node
+
+node : T_IDENT T_COLON T_IDENT
+  | T_IDENT T_COLON T_IDENT T_EOL
 
 %%

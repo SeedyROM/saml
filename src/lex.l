@@ -13,6 +13,7 @@
 
 %%
 
+" "          ;
 \n           { return T_EOL; }
 ":"          { return T_COLON; }
 "-"          { return T_DASH; }

@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <assert.h>
 
 #include "log.h"
 
@@ -7,11 +8,12 @@
 
 
 int main(int argc, char* argv[]) {
-  log_debug("Hello %s", "world");
+  FILE* test_file = fopen("./test/test.saml", "r");
+  assert(test_file != NULL);
 
   yyscan_t scanner;
   yylex_init(&scanner);
-  yyset_in(stdin, scanner);
+  yyset_in(test_file, scanner);
   yyparse(scanner);
   yylex_destroy(scanner);
 
