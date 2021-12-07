@@ -13,7 +13,7 @@ FLEX := flex
 BISON := bison
 BISON_FLAGS := -d
 INC_DIRS := $(shell find $(SRC_DIRS) -type d)
-INC_FLAGS := $(addprefix -I,$(INC_DIRS))
+INC_FLAGS := $(addprefix -I,$(INC_DIRS)) -DLOG_USE_COLOR
 
 CPPFLAGS ?= $(INC_FLAGS) -MMD -MP
 

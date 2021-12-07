@@ -1,10 +1,14 @@
 #include <stdio.h>
 
+#include "log.h"
+
 #include "parser.tab.h"
 #include "lex.yy.h"
 
 
 int main(int argc, char* argv[]) {
+  log_debug("Hello %s", "world");
+
   yyscan_t scanner;
   yylex_init(&scanner);
   yyset_in(stdin, scanner);
