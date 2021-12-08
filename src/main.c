@@ -6,13 +6,13 @@
 #include "parser.tab.h"
 #include "lex.yy.h"
 
-
-int main(int argc, char* argv[]) {
+int main(int argc, char *argv[])
+{
   //
   // Load our test file relatively to the root of the project
   // make sure to run `./build/a.out` at the root!
   //
-  FILE* test_file = fopen("./test/test.saml", "r");
+  FILE *test_file = fopen("./test/test.saml", "r");
   assert(test_file != NULL);
 
   //
@@ -30,11 +30,12 @@ int main(int argc, char* argv[]) {
 }
 
 /**
- * @brief The bison error formatting method we need to externally define
+ * @brief The bison error formatting method we externally defined in the parser generator
  * 
  * @param scanner 
  * @param message 
  */
-void yyerror(yyscan_t scanner, const char* message) {
+void yyerror(yyscan_t scanner, const char *message)
+{
   log_error("Parse error: %s\n", message);
 }

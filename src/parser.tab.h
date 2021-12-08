@@ -50,14 +50,15 @@ extern int yydebug;
 # define YYTOKENTYPE
   enum yytokentype
   {
-    YYEMPTY = -2,
-    YYEOF = 0,                     /* "end of file"  */
-    YYerror = 256,                 /* error  */
-    YYUNDEF = 257,                 /* "invalid token"  */
-    T_EOL = 258,                   /* T_EOL  */
-    T_COLON = 259,                 /* T_COLON  */
-    T_DASH = 260,                  /* T_DASH  */
-    T_IDENT = 261                  /* T_IDENT  */
+    T_YYEMPTY = -2,
+    T_YYEOF = 0,                   /* "end of file"  */
+    T_YYerror = 256,               /* error  */
+    T_YYUNDEF = 257,               /* "invalid token"  */
+    T_EOL = 258,                   /* EOL  */
+    T_COLON = 259,                 /* COLON  */
+    T_DASH = 260,                  /* DASH  */
+    T_IDENT = 261,                 /* IDENT  */
+    T_STRING = 262                 /* STRING  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
@@ -66,14 +67,14 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 15 "src/parser.y"
+#line 22 "src/parser.y"
 
   double d_val;
   int i_val;
   char c_val;
   char* s_val;
 
-#line 77 "src/parser.tab.h"
+#line 78 "src/parser.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;
@@ -84,7 +85,7 @@ typedef union YYSTYPE YYSTYPE;
 
 
 
-int yyparse (void *scanner);
+int yyparse (void* scanner);
 
 
 #endif /* !YY_YY_SRC_PARSER_TAB_H_INCLUDED  */

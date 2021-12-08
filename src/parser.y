@@ -1,7 +1,13 @@
+%code top {
+  #include "scanner.h"
+}
+
 %define parse.error verbose // Return fully verbose parsing errors
 %define api.pure full // Use a fully pure reentrant parser (AKA NO GLOBAL STATE)
-%lex-param {void *scanner} // Stub out our parser state struct as void* for now
-%parse-param {void *scanner} // Same here
+%lex-param {void* scanner} // Stub out our parser state struct as void* for now
+%parse-param {void* scanner} // Same here
+%define api.token.prefix {T_} // Preface the tokens with T_ makes 
+                              // this file more human readable
 
 %{
   // Include the generated parser/scanner code
@@ -21,9 +27,13 @@
 }
 
 // Typical tokens
-%token T_EOL
-%token T_COLON T_DASH
-%token <s_val> T_IDENT 
+%token EOL
+%token COLON DASH
+%token <s_val> IDENT
+%token <s_val> STRING
+
+%type <s_val> key;
+%type <s_val> value;
 
 // Entrypoint
 %start markup
@@ -35,7 +45,13 @@ markup : nodes
 nodes : node
   | nodes node
 
-node : T_IDENT T_COLON T_IDENT
-  | T_IDENT T_COLON T_IDENT T_EOL
+node : key COLON value { printf("%s=%s\n", $1, $3); }
+  | key COLON value EOL { printf("%s=%s\n", $1, $3); }
+
+key : IDENT { $$ = $1; }
+  | STRING {$$ = $1; }
+
+value : IDENT { $$ = $1; }
+  | STRING { $$ = $1; }
 
 %%
