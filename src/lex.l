@@ -22,7 +22,6 @@
 " "                ;
 \n                 { return T_EOL; }
 ":"                { return T_COLON; }
-"-"                { return T_DASH; }
 [a-zA-Z_-]+        { 
                       yylval->s_val = strdup(yytext);
                       return T_IDENT; 

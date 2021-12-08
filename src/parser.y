@@ -28,7 +28,7 @@
 
 // Typical tokens
 %token EOL
-%token COLON DASH
+%token COLON
 %token <s_val> IDENT
 %token <s_val> STRING
 

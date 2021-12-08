@@ -56,9 +56,8 @@ extern int yydebug;
     T_YYUNDEF = 257,               /* "invalid token"  */
     T_EOL = 258,                   /* EOL  */
     T_COLON = 259,                 /* COLON  */
-    T_DASH = 260,                  /* DASH  */
-    T_IDENT = 261,                 /* IDENT  */
-    T_STRING = 262                 /* STRING  */
+    T_IDENT = 260,                 /* IDENT  */
+    T_STRING = 261                 /* STRING  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
@@ -74,7 +73,7 @@ union YYSTYPE
   char c_val;
   char* s_val;
 
-#line 78 "src/parser.tab.h"
+#line 77 "src/parser.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;

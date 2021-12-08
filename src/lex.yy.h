@@ -622,7 +622,7 @@ extern int yylex \
 #undef yyTABLES_NAME
 #endif
 
-#line 48 "src/lex.l"
+#line 47 "src/lex.l"
 
 
 #line 628 "src/lex.yy.h"
