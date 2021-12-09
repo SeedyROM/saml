@@ -1,17 +1,14 @@
 %option 8bit reentrant bison-bridge
 %option warn noyywrap nodefault
-%option debug
 %option header-file="src/lex.yy.h"
 
 %{
   #include <string.h>
-
+  
+  #include "scanner.h"
   #include "parser.tab.h"  
 
-  extern void yyerror(const char* message);
-
-  int current_line_indent = 0;
-  int indent_level = 0;
+  extern void yyerror(yyscan_t scanner, saml_scanner* saml, const char* message);
 %}
 
 %x SINGLE_STRING
@@ -29,8 +26,14 @@
 
 \"                 BEGIN(SINGLE_STRING);
 <SINGLE_STRING>{
-  \n               yyerror("the string misses \" to termiate before newline");
-  <<EOF>>          yyerror("the string misses \" to terminate before EOF");
+  \n               {
+                      yyerror(yyscanner, NULL, "unexpected EOL for open \"");
+                      return 0;
+                   }
+  <<EOF>>          {
+                      yyerror(yyscanner, NULL, "unexpected EOF for open \"");
+                      return 0;
+                   }
   ([^\\\"]|\\.)*   { 
                       yylval->s_val = strdup(yytext);
                       return T_STRING; 

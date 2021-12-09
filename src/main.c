@@ -2,6 +2,7 @@
 #include <assert.h>
 
 #include "log.h"
+#include "scanner.h"
 
 #include "parser.tab.h"
 #include "lex.yy.h"
@@ -21,10 +22,19 @@ int main(int argc, char *argv[])
   // concurrently but also thread-safely.
   //
   yyscan_t scanner;
+  saml_scanner saml = {
+    .pos = {
+      .line = 0,
+      .col = 0
+    }
+  };
+
   yylex_init(&scanner);
   yyset_in(test_file, scanner);
-  yyparse(scanner);
+  yyparse(scanner, &saml);
   yylex_destroy(scanner);
+
+  printf("Scanner found %d\n", saml.pos.col);
 
   return 0;
 }
@@ -35,7 +45,7 @@ int main(int argc, char *argv[])
  * @param scanner 
  * @param message 
  */
-void yyerror(yyscan_t scanner, const char *message)
+void yyerror(yyscan_t scanner, saml_scanner* saml, const char *message)
 {
   log_error("Parse error: %s\n", message);
 }

@@ -66,7 +66,7 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 22 "src/parser.y"
+#line 23 "src/parser.y"
 
   double d_val;
   int i_val;
@@ -84,7 +84,7 @@ typedef union YYSTYPE YYSTYPE;
 
 
 
-int yyparse (void* scanner);
+int yyparse (void* scanner, saml_scanner* saml);
 
 
 #endif /* !YY_YY_SRC_PARSER_TAB_H_INCLUDED  */

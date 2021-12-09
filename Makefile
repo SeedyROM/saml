@@ -34,7 +34,7 @@ $(BUILD_DIR)/%.c.o: %.c
 	flex -o $@ $< 
 %.tab.c: %.y
 	bison -d -o $@ $< 
-parser: src/parser.tab.c src/lex.yy.c 
+parser: src/lex.yy.c src/parser.tab.c
 
 .PHONY: clean
 
